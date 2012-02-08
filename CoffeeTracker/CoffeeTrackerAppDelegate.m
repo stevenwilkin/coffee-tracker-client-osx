@@ -13,6 +13,7 @@
 @implementation CoffeeTrackerAppDelegate
 
 @synthesize window;
+@synthesize button;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -29,6 +30,12 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"failure :/");
     }];
+
+    // disable button while POST is in progress
+    [operation setCompletionBlock:^(void) {
+        [button setEnabled:YES];
+    }];
+    [button setEnabled:NO];
     
     [operation start];
 }

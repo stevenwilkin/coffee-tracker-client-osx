@@ -10,9 +10,11 @@
 
 @interface CoffeeTrackerAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
+    NSButton *button;
 }
 
 @property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet NSButton *button;
 
 - (IBAction)trackCoffee:(id)sender;
 
