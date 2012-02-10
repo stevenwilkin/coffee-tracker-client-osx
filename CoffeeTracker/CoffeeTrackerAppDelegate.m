@@ -7,7 +7,6 @@
 //
 
 #import "CoffeeTrackerAppDelegate.h"
-#import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
 
 @implementation CoffeeTrackerAppDelegate
@@ -17,12 +16,14 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    NSURL *url = [NSURL URLWithString:@"http://0.0.0.0:9292"];
+    client = [[AFHTTPClient alloc] initWithBaseURL:url];
+    // API key must be set in pre-processor macros
+    [client setDefaultHeader:@"X-API-KEY" value:API_KEY];
 }
 
 - (void)trackCoffee:(id)sender {
-    NSURL *url = [NSURL URLWithString:@"http://0.0.0.0:9292"];
-    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:url];
-    NSURLRequest *request = [client requestWithMethod:@"POST" path:@"/" parameters:nil];
+    NSURLRequest *request = [client requestWithMethod:@"POST" path:@"/api" parameters:nil];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {

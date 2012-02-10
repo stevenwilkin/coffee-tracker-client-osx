@@ -7,10 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AFHTTPClient.h"
 
 @interface CoffeeTrackerAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
     NSButton *button;
+    AFHTTPClient *client;
 }
 
 @property (assign) IBOutlet NSWindow *window;
