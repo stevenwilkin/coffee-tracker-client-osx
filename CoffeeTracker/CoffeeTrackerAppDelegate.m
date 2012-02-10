@@ -27,10 +27,8 @@
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"success!");
         [button setEnabled:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"failure :/");
         [button setEnabled:YES];
     }];
 
