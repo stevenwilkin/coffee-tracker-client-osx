@@ -15,6 +15,15 @@
 @synthesize button;
 @synthesize count;
 
+- (void)setCountFromResponseOperation:(AFHTTPRequestOperation *)operation {
+    // convert response body to an integer
+    int value = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:[operation responseString]];
+    [scanner scanInt:&value];
+    NSString *label = [NSString stringWithFormat:@"%d", value];
+    [count setTitle:label];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     NSURL *url = [NSURL URLWithString:@"http://0.0.0.0:9292"];
@@ -24,12 +33,7 @@
 
     // set count label
     [client getPath:@"/api" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        // convert response body to an integer
-        int value = 0;
-        NSScanner *scanner = [NSScanner scannerWithString:[operation responseString]];
-        [scanner scanInt:&value];
-        NSString *label = [NSString stringWithFormat:@"%d", value];
-        [count setTitle:label];
+        [self setCountFromResponseOperation:operation];
     } failure:nil];
 }
 
@@ -38,6 +42,7 @@
     [button setEnabled:NO];
     
     [client postPath:@"/api" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self setCountFromResponseOperation:operation];
         [button setEnabled:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [button setEnabled:YES];

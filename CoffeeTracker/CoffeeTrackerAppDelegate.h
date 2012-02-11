@@ -20,6 +20,7 @@
 @property (assign) IBOutlet NSButton *button;
 @property (assign) IBOutlet NSTextFieldCell *count;
 
+- (void)setCountFromResponseOperation:(AFHTTPRequestOperation *)operation;
 - (IBAction)trackCoffee:(id)sender;
 
 @end
