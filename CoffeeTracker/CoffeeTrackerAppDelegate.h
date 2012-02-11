@@ -12,11 +12,13 @@
 @interface CoffeeTrackerAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
     NSButton *button;
+    NSTextFieldCell *count;
     AFHTTPClient *client;
 }
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSButton *button;
+@property (assign) IBOutlet NSTextFieldCell *count;
 
 - (IBAction)trackCoffee:(id)sender;
 

@@ -13,6 +13,7 @@
 
 @synthesize window;
 @synthesize button;
+@synthesize count;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -20,6 +21,16 @@
     client = [[AFHTTPClient alloc] initWithBaseURL:url];
     // API key must be set in pre-processor macros
     [client setDefaultHeader:@"X-API-KEY" value:API_KEY];
+
+    // set count label
+    [client getPath:@"/api" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // convert response body to an integer
+        int value = 0;
+        NSScanner *scanner = [NSScanner scannerWithString:[operation responseString]];
+        [scanner scanInt:&value];
+        NSString *label = [NSString stringWithFormat:@"%d", value];
+        [count setTitle:label];
+    } failure:nil];
 }
 
 - (void)trackCoffee:(id)sender {
