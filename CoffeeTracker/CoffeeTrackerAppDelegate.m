@@ -34,19 +34,14 @@
 }
 
 - (void)trackCoffee:(id)sender {
-    NSURLRequest *request = [client requestWithMethod:@"POST" path:@"/api" parameters:nil];
+    // disable button while POST is in progress
+    [button setEnabled:NO];
     
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [client postPath:@"/api" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [button setEnabled:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [button setEnabled:YES];
     }];
-
-    // disable button while POST is in progress
-    [button setEnabled:NO];
-    
-    [operation start];
 }
 
 @end
