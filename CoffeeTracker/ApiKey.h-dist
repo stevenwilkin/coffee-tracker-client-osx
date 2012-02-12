@@ -1,0 +1,9 @@
+//
+//  ApiKey.h
+//  CoffeeTracker
+//
+//  Created by Steven Wilkin on 12/02/2012.
+//  Copyright 2012 NullTheory Ltd. All rights reserved.
+//
+
+#define API_KEY @"YOUR_API_KEY"

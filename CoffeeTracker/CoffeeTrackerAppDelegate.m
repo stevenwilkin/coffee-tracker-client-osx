@@ -8,6 +8,7 @@
 
 #import "CoffeeTrackerAppDelegate.h"
 #import "AFHTTPRequestOperation.h"
+#import "ApiKey.h"
 
 @implementation CoffeeTrackerAppDelegate
 
