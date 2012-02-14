@@ -27,7 +27,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    NSURL *url = [NSURL URLWithString:@"http://0.0.0.0:9292"];
+    NSURL *url = [NSURL URLWithString:API_BASE_URL];
     client = [[AFHTTPClient alloc] initWithBaseURL:url];
     // API key must be set in pre-processor macros
     [client setDefaultHeader:@"X-API-KEY" value:API_KEY];

@@ -9,6 +9,12 @@
 #import <Cocoa/Cocoa.h>
 #import "AFHTTPClient.h"
 
+#ifdef DEBUG
+    #define API_BASE_URL @"http://0.0.0.0:9292"
+#else
+    #define API_BASE_URL @"http://coffee-tracker.herokuapp.com"
+#endif
+
 @interface CoffeeTrackerAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
     NSButton *button;
